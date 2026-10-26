@@ -51,3 +51,60 @@ public class ServiceRequestController {
         service.delete(id);
     }
 }
+
+
+/*ESTRUCTURA GLOBAL PROPUESTA
+*
+*
+*
+*
+* backend/
+└── src/main/java/com/mitienda/
+    ├── MiTiendaApplication.java
+    ├── config/
+    │   └── CorsConfig.java
+    ├── controller/
+    │   ├── ServicioController.java
+    │   ├── ContactoController.java
+    │   └── PresupuestoController.java
+    ├── service/
+    │   ├── ServicioService.java
+    │   ├── ContactoService.java
+    │   └── PresupuestoService.java
+    ├── repository/
+    │   ├── ServicioRepository.java
+    │   └── PresupuestoRepository.java
+    ├── entity/
+    │   ├── Servicio.java
+    │   └── SolicitudPresupuesto.java
+    ├── dto/
+    │   ├── ServicioResponse.java
+    │   └── PresupuestoRequest.java
+    └── exception/
+        └── GlobalExceptionHandler.java
+* */
+
+/*CONTROLLER PROPUESTO
+*
+*
+*
+* @RestController
+@RequestMapping("/api/servicios")
+class ServicioController {
+
+    private final ServicioService servicioService;
+
+    GET "/":
+        obtenerServicios(categoriaOpcional):
+            servicios = servicioService.buscarActivos(categoriaOpcional)
+            devolver HTTP 200 con servicios
+
+    GET "/{id}":
+        obtenerServicio(id):
+            servicio = servicioService.buscarPorId(id)
+
+            si servicio no existe:
+                devolver HTTP 404
+
+            devolver HTTP 200 con servicio
+}*/

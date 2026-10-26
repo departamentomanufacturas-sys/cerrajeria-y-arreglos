@@ -42,3 +42,21 @@ public class ServiceRequestService {
         repository.delete(request);
     }
 }
+
+/*SERVICE PROPUESTO
+*
+*
+* class ServicioService {
+
+    buscarActivos(categoria):
+        si categoria está vacía:
+            devolver repository.buscarTodosLosActivos()
+
+        validar que categoria sea válida
+
+        devolver repository.buscarActivosPorCategoria(categoria)
+
+    buscarPorId(id):
+        devolver repository.buscarPorId(id)
+            o lanzar ServicioNoEncontradoException
+}*/
