@@ -1,8 +1,14 @@
-package com.martin.cerrajeria_y_arreglos.request;
+package com.martin.cerrajeria_y_arreglos.servicio;
 
+import com.martin.cerrajeria_y_arreglos.domain.Servicio;
 import jakarta.validation.Valid;
+
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,41 +20,47 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/requests")
-public class ServiceRequestController {
+@RequestMapping("/api/servicios")
+public class ServicioController {
 
-    private final ServiceRequestService service;
+    private static final Logger logger = LoggerFactory.getLogger(ServicioController.class);
 
-    public ServiceRequestController(ServiceRequestService service) {
-        this.service = service;
+    private final ServicioService servicioService;
+
+    public ServicioController(ServicioService servicioService) {
+        this.servicioService = servicioService;
     }
 
     @GetMapping
-    public String findAll() {
-        return "Holaaaa a todos";
-                //service.findAll();
+    public List<Servicio> findAll() {
+        logger.info("Solicitud HTTP para consultar todos los servicios");
+        return servicioService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ServiceRequest findById(@PathVariable Long id) {
-        return service.findById(id);
+    public Servicio findById(@PathVariable UUID id) {
+        logger.info("Solicitud HTTP para consultar el servicio con id={}", id);
+        return servicioService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ServiceRequest create(@Valid @RequestBody ServiceRequestInput input) {
-        return service.create(input);
+    public Servicio create(@Valid @RequestBody ServicioRequest input) {
+        logger.info("Solicitud HTTP para crear un servicio");
+        return servicioService.create(input);
     }
 
     @PutMapping("/{id}")
-    public ServiceRequest update(@PathVariable Long id, @Valid @RequestBody ServiceRequestInput input) {
-        return service.update(id, input);
+    public Servicio update(@PathVariable UUID id, @Valid @RequestBody ServicioRequest input) {
+        logger.info("Solicitud HTTP para actualizar el servicio con id={}", id);
+        return servicioService.update(id, input);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    public void delete(@PathVariable UUID id) {
+        logger.info("Solicitud HTTP para eliminar el servicio con id={}", id);
+        servicioService.delete(id);
     }
 }
 
