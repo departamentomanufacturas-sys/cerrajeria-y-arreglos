@@ -1,10 +1,10 @@
-package com.martin.cerrajeria_y_arreglos;
+package com.martin.elgreco;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CerrajeriaYArreglosApplicationTests {
+class ElGrecoApplicationTests {
 
     @Test
     void contextLoads() {
